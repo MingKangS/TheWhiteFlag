@@ -1,29 +1,27 @@
-const express = require("express");
-const login = express.Router();
+import express from "express";
+const signup = express.Router();
 
-const passport = require("../../../auth/");
+import passport from "../../../auth/"
+// const passport = require("../../../auth/");
 
-login.post("/signin", function (req, res) {
-  passport.authenticate("google-signin", function (error, user, info) {
+signup.post("/signup", (req, res) => {
+  passport.authenticate("google-signup", function (error, user, info) {
     if (error) {
       return res.status(500).json({
         message: error || "Something happend",
         error: error.message || "Server error",
       });
     }
-
-    req.logIn(user, function (error, data) {
+    req.logIn(user, function (error) {
       if (error) {
         return res.status(500).json({
           message: error || "Something happend",
           error: error.message || "Server error",
         });
       }
+      return res.json(user);
     });
-
-    user.isAuthenticated = true;
-    return res.json(user);
   })(req, res);
 });
 
-module.exports = login;
+export default signup;
