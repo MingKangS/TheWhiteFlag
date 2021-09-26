@@ -1,0 +1,26 @@
+<div>
+	<form (ngSubmit)="onFormSubmit()">
+		<h2>Sign in</h2>
+		<div class="form-control">
+		<label for="email">Email</label>
+		<input
+		type="email"
+		name="email"
+		[(ngModel)]="email"
+		id="email"
+		placeholder="Enter your email here."
+		/>
+		</div>
+		<div class="form-control">
+			<label for="password">Password</label>
+			<input
+				type="password"
+				name="password"
+				[(ngModel)]="password"
+				id="password"
+				placeholder="Enter your password here."
+			/>
+		</div>
+		<input type="submit" value="Sign in" class="btn btn-block" />
+	</form>
+</div>
