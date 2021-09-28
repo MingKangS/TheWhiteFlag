@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthUser } from 'src/app/interfaces/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,7 +11,7 @@ export class SignUpComponent implements OnInit {
 	email: string = "";
 	password: string = "";
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -18,5 +19,9 @@ export class SignUpComponent implements OnInit {
 	signUp(user: AuthUser){
 		console.log("Sign up:", user.email, user.password);
 	}
+
+	hasRoute(route: string) {
+    return this.router.url === route;
+  }
 
 }

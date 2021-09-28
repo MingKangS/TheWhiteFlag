@@ -1,6 +1,7 @@
 <div>
 	<form (ngSubmit)="onFormSubmit()">
-		<h2>Sign in</h2>
+		<h2 *ngIf="hasRoute('/sign-up')">Sign up</h2>
+		<h2 *ngIf="hasRoute('/')">Log in</h2>
 		<div class="form-control">
 		<label for="email">Email</label>
 		<input
@@ -22,5 +23,7 @@
 			/>
 		</div>
 		<input type="submit" value="Sign in" class="btn btn-block" />
+		<p *ngIf="hasRoute('/sign-up')">Already have an account? <a routerLink="/">Log in!</a></p>
+		<p *ngIf="hasRoute('/')">New here? Click here to <a routerLink="/sign-up">Sign up.</a></p>
 	</form>
 </div>

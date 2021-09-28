@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter  } from '@angular/core';
 import { AuthUser } from 'src/app/interfaces/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-form',
@@ -11,15 +12,15 @@ export class AuthFormComponent implements OnInit {
 	email: string = "";
 	password: string = "";
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
 	onFormSubmit() {
-		if (!this.email || !this.password) {
-			return;
-		}
+		// if (!this.email || !this.password) {
+		// 	return;
+		// }
 
     const authUser = {
       email: this.email,
@@ -31,5 +32,9 @@ export class AuthFormComponent implements OnInit {
     this.email = '';
     this.password = '';
 	}
+
+	hasRoute(route: string) {
+    return this.router.url === route;
+  }
 
 }

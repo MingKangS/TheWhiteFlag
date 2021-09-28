@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "angularx-social-login": "^4.0.1",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.6",
     "cors": "^2.8.5",

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthUser } from 'src/app/interfaces/auth';
+import { SocialAuthService } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
@@ -11,15 +14,25 @@ export class LogInComponent implements OnInit {
 	password: string = "";
 
 
-  constructor() { }
+  constructor(
+		private router: Router,
+    private authService: SocialAuthService
+	) { }
 
   ngOnInit(): void {
   }
 
+	
+
 	logIn(user: AuthUser) {
 
     console.log("The credentials entered are:", user.email, user.password);
-  //   const requestOptions = {
+  
+		this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((data) => {
+      localStorage.setItem('google_auth', JSON.stringify(data));
+      this.router.navigateByUrl('/home').then();
+    });
+		//   const requestOptions = {
   //     method: "POST",
   //     headers: { "Content-Type": "application/json" },
   //     body: JSON.stringify({
