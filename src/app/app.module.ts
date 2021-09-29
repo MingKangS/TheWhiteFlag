@@ -13,6 +13,7 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { AuthFormComponent } from './components/auth/auth-form/auth-form.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { HomeComponent } from './components/home/home.component';
+import { MapComponent } from './components/main/map/map.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { HomeComponent } from './components/home/home.component';
     LogInComponent,
     AuthFormComponent,
     SignUpComponent,
-    HomeComponent
+    HomeComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,
