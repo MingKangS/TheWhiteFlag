@@ -3,6 +3,7 @@ import { AuthUser } from 'src/app/interfaces/auth';
 import { SocialAuthService } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 import { Router } from '@angular/router';
+import { SocialUser } from "angularx-social-login";
 
 @Component({
   selector: 'app-log-in',
@@ -29,9 +30,11 @@ export class LogInComponent implements OnInit {
     console.log("The credentials entered are:", user.email, user.password);
   
 		this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then((data) => {
-      localStorage.setItem('google_auth', JSON.stringify(data));
+      console.log(data)
+			localStorage.setItem('google_auth', JSON.stringify(data));
       this.router.navigateByUrl('/home').then();
     });
+		console.log(this.authService.authState)
 		//   const requestOptions = {
   //     method: "POST",
   //     headers: { "Content-Type": "application/json" },

@@ -7,6 +7,8 @@ import path from 'path';
 import * as dotenv from 'dotenv';
 import passport from "./auth"
 import routes from "./routes"
+import { graphqlHTTP } from 'express-graphql'
+import schema from './graphql_schema/schema'
 dotenv.config();
 
 const app = express();
@@ -27,6 +29,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 app.use("/api", routes);
+
+app.use('/graphql', graphqlHTTP({
+	schema,
+	graphiql: true
+}));
 
 const port: string = process.env.PORT || "8080";
 
