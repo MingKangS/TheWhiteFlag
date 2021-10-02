@@ -6,7 +6,7 @@
     "start": "ng serve",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "dev": "concurrently \"nodemon --exec ts-node server\" \"ng serve\"",
+    "dev": "concurrently \"nodemon --exec ts-node server -e ts\" \"ng serve\"",
     "build": "tsc"
   },
   "private": true,
@@ -21,6 +21,7 @@
     "@angular/router": "~12.2.0",
     "@apollo/client": "^3.4.15",
     "@googlemaps/js-api-loader": "^1.12.4",
+    "@ngrx/store": "^12.4.0",
     "angularx-social-login": "^4.0.1",
     "apollo-angular": "^2.6.0",
     "apollo-angular-link-http": "^1.11.0",

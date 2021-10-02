@@ -9,11 +9,19 @@ import { graphql,
 	GraphQLList,
 	GraphQLNonNull } from 'graphql';
 
+	const CoordinatesType = new GraphQLObjectType({
+		name: 'coordinates',
+		fields: () => ({
+			lat: { type: GraphQLFloat },
+			lng: { type: GraphQLFloat },
+		})
+	})
+
 const WhiteFlagType = new GraphQLObjectType({
     name: 'WhiteFlag',
     fields: ( ) => ({
 				name: { type: GraphQLString },
-        coordinates: { type: GraphQLID },
+        coordinates: { type: CoordinatesType },
         contact: { type: GraphQLString },
         description: { type: GraphQLString },
 				priority: { type: GraphQLInt },
@@ -28,7 +36,6 @@ const RootQuery = new GraphQLObjectType({
             type: WhiteFlagType,
             args: { name: { type: GraphQLString } },
             resolve(parent, args){
-							console.log("1")
                 return WhiteFlag.findById(args.name);
             }
         },
@@ -36,18 +43,7 @@ const RootQuery = new GraphQLObjectType({
 					type: new GraphQLList(WhiteFlagType),
 
 					resolve(parent, args){
-						console.log("2",WhiteFlag.find({}, (err, docs) =>{
-							console.log(docs)
-						}))
-							return [
-								   {
-								     coordinates: { lat: -34.397, lng: 150.644 },
-
-								    name: 'My Orphange',
-								     contact: '0123456789',
-								     description: 'Need food.',
-								    priority: 3}
- ];
+							return WhiteFlag.find({});
 					}
 			},
     }

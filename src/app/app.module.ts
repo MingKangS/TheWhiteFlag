@@ -6,6 +6,8 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider
 } from 'angularx-social-login';
+import { StoreModule } from '@ngrx/store';
+import { whiteflagReducer } from './state/whiteflags.reducer';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,8 +36,11 @@ import { SideBarComponent } from './components/main/side-bar/side-bar.component'
     AppRoutingModule,
 		FormsModule,
 		SocialLoginModule,
-  GraphQLModule,
-  HttpClientModule
+		GraphQLModule,
+		HttpClientModule,
+		StoreModule.forRoot({
+			whiteflags: whiteflagReducer
+		})
   ],
   providers: [
 		{
