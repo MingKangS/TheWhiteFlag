@@ -14,6 +14,9 @@ import { AuthFormComponent } from './components/auth/auth-form/auth-form.compone
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { HomeComponent } from './components/home/home.component';
 import { MapComponent } from './components/main/map/map.component';
+import { GraphQLModule } from './graphql/graphql.module';
+import { HttpClientModule } from '@angular/common/http';
+import { SideBarComponent } from './components/main/side-bar/side-bar.component';
 
 
 @NgModule({
@@ -24,12 +27,15 @@ import { MapComponent } from './components/main/map/map.component';
     SignUpComponent,
     HomeComponent,
     MapComponent,
+    SideBarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
 		FormsModule,
-		SocialLoginModule
+		SocialLoginModule,
+  GraphQLModule,
+  HttpClientModule
   ],
   providers: [
 		{

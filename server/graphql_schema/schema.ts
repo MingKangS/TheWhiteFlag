@@ -28,14 +28,26 @@ const RootQuery = new GraphQLObjectType({
             type: WhiteFlagType,
             args: { name: { type: GraphQLString } },
             resolve(parent, args){
+							console.log("1")
                 return WhiteFlag.findById(args.name);
             }
         },
 				allWhiteFlags: {
-					type: WhiteFlagType,
+					type: new GraphQLList(WhiteFlagType),
 
 					resolve(parent, args){
-							return WhiteFlag.find({});
+						console.log("2",WhiteFlag.find({}, (err, docs) =>{
+							console.log(docs)
+						}))
+							return [
+								   {
+								     coordinates: { lat: -34.397, lng: 150.644 },
+
+								    name: 'My Orphange',
+								     contact: '0123456789',
+								     description: 'Need food.',
+								    priority: 3}
+ ];
 					}
 			},
     }
