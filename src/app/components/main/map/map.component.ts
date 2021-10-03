@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Loader } from "@googlemaps/js-api-loader"
 import config from "../../../../config/index.json"
+import { Observable } from 'rxjs';
+import { getAllWhiteFlags } from '../../../graphql/queries'
+import { select, Store } from '@ngrx/store';
+import { WhiteFlag, Query } from 'src/app/interfaces/main';
 
 @Component({
   selector: 'app-map',
@@ -8,8 +12,10 @@ import config from "../../../../config/index.json"
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
-
-  constructor() { }
+	WhiteFlagList$: Observable<WhiteFlag[]>;
+  constructor(private store: Store<{whiteflags : WhiteFlag[]}>) { 
+		this.WhiteFlagList$ = store.pipe(select('whiteflags'));
+	}
 
   ngOnInit(): void {
 		const loader = new Loader({
@@ -24,12 +30,19 @@ export class MapComponent implements OnInit {
 				center: { lat: -34.397, lng: 150.644 },
 				zoom: 18,
 			});
-			const myLatLng = { lat: -25.363, lng: 131.044 };
-			new google.maps.Marker({
-				position: myLatLng,
-				map,
-				title: "Hello World!",
-			});
+
+			this.WhiteFlagList$.subscribe(WhiteFlagList => {
+				for (var wf of WhiteFlagList) {
+					
+					new google.maps.Marker({
+						position: wf.coordinates,
+						map,
+						title: wf.name,
+					});
+				}
+				
+			})
+			
 		});
   }
 

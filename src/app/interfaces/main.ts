@@ -1,12 +1,12 @@
 export type WhiteFlag = {
-	name: String,
+	name: string,
   coordinates: {
-		lat: Number,
-		lng: Number
+		lat: number,
+		lng: number
 	},
-  contact: String,
-	description: String,
-	priority: Number
+  contact: string,
+	description: string,
+	priority: number
 }
 
 export type Query = {

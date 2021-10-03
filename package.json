@@ -6,7 +6,7 @@
     "start": "ng serve",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "dev": "concurrently \"nodemon --exec ts-node server -e ts\" \"ng serve\"",
+    "dev": "concurrently \"nodemon --exec ts-node server --watch server -e ts\" \"ng serve\"",
     "build": "tsc"
   },
   "private": true,
